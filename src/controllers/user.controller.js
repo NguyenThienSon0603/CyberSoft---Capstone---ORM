@@ -30,9 +30,9 @@ const userController = {
     }
   },
 
-  uploadImages: async (req, res, next) => {
+  uploadImage: async (req, res, next) => {
     try {
-      const result = await userService.uploadImages(req);
+      const result = await userService.uploadImage(req);
       const response = responseSuccess(
         result,
         "Tải hình ảnh lên thành công.",
@@ -52,6 +52,16 @@ const userController = {
         "Lấy danh sách hình ảnh thành công.",
         200
       );
+      res.status(response.statusCode).json(response);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  deleteImageByUser: async (req, res, next) => {
+    try {
+      const result = await userService.deleteImageByUser(req);
+      const response = responseSuccess(result, "Xóa ảnh thành công.", 200);
       res.status(response.statusCode).json(response);
     } catch (error) {
       next(error);

@@ -53,7 +53,7 @@ const userService = {
     };
   },
 
-  uploadImages: async (req) => {
+  uploadImage: async (req) => {
     const { name, description } = req.body;
     const user = req.user;
     const file = req.file;
@@ -97,18 +97,59 @@ const userService = {
     if (!userId) throw new BadRequestException("Tài khoản không tồn tại");
 
     const listImages = await prisma.images.findMany({
-      where: { userId: userId },
+      where: { userId: userId, isDeleted: false },
+      select: {
+        imageId: true,
+        name: true,
+        url: true,
+        description: true,
+        createdAt: true,
+        Users: {
+          select: {
+            userId: true,
+            fullName: true,
+          },
+        },
+      },
     });
 
     // Định dạng lại dữ liệu trả về thành Array cho FE
     const result = {};
     listImages.forEach((item) => {
-      if (Array.isArray(result[item.userId])) {
-        result[item.userId].push(item);
+      if (Array.isArray(result[item.Users.userId])) {
+        result[item.Users.userId].push(item);
       } else {
-        result[item.userId] = [];
-        result[item.userId].push(item);
+        result[item.Users.userId] = [];
+        result[item.Users.userId].push(item);
       }
+    });
+
+    return result;
+  },
+
+  deleteImageByUser: async (req) => {
+    const { imageId } = req.params;
+    const { userId } = req.user;
+
+    // Lấy thông tin hình ảnh cần xóa
+    const image = await prisma.images.findUnique({
+      where: { imageId: Number(imageId) },
+    });
+
+    if (!image) throw new Error("Hình ảnh bạn muốn xóa không tồn tại.");
+
+    // Kiểm tra hình ảnh có phải của user này tạo không
+    if (userId !== image.userId)
+      throw new Error("Hình này của người khác, bạn không có quyền xóa.");
+
+    // Xóa hình ảnh
+    const result = await prisma.images.update({
+      where: { imageId: Number(imageId) },
+      data: {
+        isDeleted: true,
+        deletedBy: userId,
+        deletedAt: new Date(),
+      },
     });
 
     return result;
