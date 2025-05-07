@@ -4,7 +4,8 @@ import protectMiddleware from "../common/middleware/protect.middleware";
 import avatarCloud from "../common/multer/cloud.multer";
 
 const userRouter = express.Router();
-
+userRouter.get("/getInfo", protectMiddleware, userController.getInfo);
+userRouter.get("/getListImages", protectMiddleware, userController.getListImagesByUser);
 userRouter.put(
   "/updateInfo",
   protectMiddleware,
@@ -12,10 +13,10 @@ userRouter.put(
   userController.updateInfo
 );
 userRouter.post(
-    "/uploadImages",
-    protectMiddleware,
-    avatarCloud.single("uploadImages"),
-    userController.uploadImages
-  );
+  "/uploadImages",
+  protectMiddleware,
+  avatarCloud.single("uploadImages"),
+  userController.uploadImages
+);
 
 export default userRouter;

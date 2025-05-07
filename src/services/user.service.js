@@ -6,6 +6,15 @@ import { v2 as cloudinary } from "cloudinary";
 import { DOMAIN } from "../common/constant/app.constant";
 
 const userService = {
+  getInfo: async (req) => {
+    const userId = req.user.userId;
+    if (!userId) throw new BadRequestException("Tài khoản không tồn tại");
+    const user = await prisma.users.findUnique({
+      where: { userId: userId },
+    });
+    delete user.password;
+    return user;
+  },
   updateInfo: async (req) => {
     const { fullName, password, age } = req.body;
     const user = req.user;
@@ -81,6 +90,28 @@ const userService = {
       uploadImages,
       urlAvatar: `${DOMAIN}/${uploadImages.url}`,
     };
+  },
+
+  getListImagesByUser: async (req) => {
+    const userId = req.user.userId;
+    if (!userId) throw new BadRequestException("Tài khoản không tồn tại");
+
+    const listImages = await prisma.images.findMany({
+      where: { userId: userId },
+    });
+
+    // Định dạng lại dữ liệu trả về thành Array cho FE
+    const result = {};
+    listImages.forEach((item) => {
+      if (Array.isArray(result[item.userId])) {
+        result[item.userId].push(item);
+      } else {
+        result[item.userId] = [];
+        result[item.userId].push(item);
+      }
+    });
+
+    return result;
   },
 };
 

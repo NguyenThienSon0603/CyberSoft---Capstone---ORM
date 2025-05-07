@@ -24,7 +24,6 @@ const protectMiddleware = async (req, res, next) => {
     if (!user) throw new UnAuthorizationException("Không tìm thấy tài khoản.");
 
     req.user = user;
-console.log('✌️req.user --->', req.user);
     next();
   } catch (error) {
     next(error);
