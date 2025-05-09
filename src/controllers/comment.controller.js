@@ -1,13 +1,13 @@
 import { responseSuccess } from "../common/helpers/response.helpers";
-import userService from "../services/user.service";
+import commentService from "../services/comment.service";
 
-const userController = {
-  getInfo: async (req, res, next) => {
+const commentController = {
+  getCommentsByImageId: async (req, res, next) => {
     try {
-      const result = await userService.getInfo(req);
+      const result = await commentService.getCommentsByImageId(req);
       const response = responseSuccess(
         result,
-        "Lấy thông tin thành công.",
+        "Lấy bình luận ảnh thành công.",
         200
       );
       res.status(response.statusCode).json(response);
@@ -15,13 +15,12 @@ const userController = {
       next(error);
     }
   },
-
-  updateInfo: async (req, res, next) => {
+  postComments: async (req, res, next) => {
     try {
-      const result = await userService.updateInfo(req);
+      const result = await commentService.postComments(req);
       const response = responseSuccess(
         result,
-        "Cập nhật thông tin thành công.",
+        "Gửi bình luận thành công.",
         200
       );
       res.status(response.statusCode).json(response);
@@ -30,4 +29,4 @@ const userController = {
     }
   },
 };
-export default userController;
+export default commentController;
