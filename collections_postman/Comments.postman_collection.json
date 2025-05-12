@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "db6dbff1-3178-4f2a-8727-e07ef22ce432",
+		"name": "Comments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42962494",
+		"_collection_link": "https://www.postman.com/nodejs50sequelize/workspace/capstone-pinterest/collection/42962494-db6dbff1-3178-4f2a-8727-e07ef22ce432?action=share&source=collection_link&creator=42962494"
+	},
+	"item": [
+		{
+			"name": "Get Comments By ImageId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/comment/getCommentByImageId/14",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"comment",
+						"getCommentByImageId",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"imageId\": \"12\",\r\n    \"content\": \"Hình gì đây vậy mọi người?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/comment/postComments",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"comment",
+						"postComments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

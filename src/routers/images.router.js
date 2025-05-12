@@ -3,7 +3,6 @@ import express from "express";
 import imageController from "../controllers/images.controller";
 import avatarCloud from "../common/multer/cloud.multer";
 
-
 const imageRouter = express.Router();
 
 imageRouter.get(
@@ -28,4 +27,6 @@ imageRouter.post(
   avatarCloud.single("uploadImage"),
   imageController.uploadImage
 );
+imageRouter.post("/saveImages/:imageId", protectMiddleware, imageController.saveImages);
+
 export default imageRouter;

@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "168d004d-a2d8-4740-9c39-36dbe1fcfb65",
+		"name": "Images",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42962494",
+		"_collection_link": "https://www.postman.com/nodejs50sequelize/workspace/capstone-pinterest/collection/42962494-168d004d-a2d8-4740-9c39-36dbe1fcfb65?action=share&source=collection_link&creator=42962494"
+	},
+	"item": [
+		{
+			"name": "Delete Image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/image/deleteImageByUser/13",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"deleteImageByUser",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Info By ImageId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/image/getInfoByImageId/14",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"getInfoByImageId",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List Images",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/image/getListImages",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"getListImages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Image",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/image/searchImage?search=8",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"searchImage"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uploadImage",
+							"description": "image",
+							"type": "file",
+							"src": "/C:/Users/nguye/OneDrive/Máy tính/6a9da94de32fa8f07a0e398256408ec4.jpg"
+						},
+						{
+							"key": "name",
+							"value": "image 8",
+							"description": "image 2",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description 5",
+							"description": "description 2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/image/uploadImage",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"uploadImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Images",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/image/saveImages/14",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"image",
+						"saveImages",
+						"14"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

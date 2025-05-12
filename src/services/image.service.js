@@ -166,5 +166,51 @@ const imageService = {
       urlAvatar: `${DOMAIN}/${result.Users.avatar}`,
     };
   },
+
+  saveImages: async (req) => {
+    const { userId } = req.user;
+    const { imageId } = req.params;
+    let result = {};
+
+    // Kiểm tra hình ảnh có tồn tại không
+    await imageExist(imageId);
+
+    // Kiểm tra hình đã lưu hay chưa
+    const existingSave = await prisma.saveImages.findFirst({
+      where: { userId: userId, imageId: Number(imageId) },
+    });
+
+    // Nếu ảnh đã từng lưu
+    if (existingSave) {
+      // Nếu chưa luu
+      if (existingSave.isDeleted === false) {
+        result = await prisma.saveImages.update({
+          where: {
+            id: existingSave.id,
+          },
+          data: { isDeleted: true },
+        });
+        // Nếu ảnh đã lưu
+      } else {
+        result = await prisma.saveImages.update({
+          where: {
+            id: existingSave.id,
+          },
+          data: { isDeleted: false },
+        });
+      }
+      // Nếu chưa từng lưu
+    } else {
+      result = await prisma.saveImages.create({
+        data: {
+          userId: userId,
+          imageId: Number(imageId),
+          createdAt: new Date(),
+        },
+      });
+    }
+
+    return result;
+  },
 };
 export default imageService;

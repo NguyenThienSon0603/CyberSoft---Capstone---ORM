@@ -66,6 +66,19 @@ const imageController = {
       next(error);
     }
   },
+  saveImages: async (req, res, next) => {
+    try {
+      const result = await imageService.saveImages(req);
+      const response = responseSuccess(
+        result,
+        "Lưu hình ảnh thành công.",
+        200
+      );
+      res.status(response.statusCode).json(response);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default imageController;

@@ -29,11 +29,11 @@
 							"key": "avatar",
 							"description": "hình đại diện",
 							"type": "file",
-							"src": "/C:/Users/nguye/OneDrive/Máy tính/download.jpg"
+							"src": "/C:/Users/nguye/OneDrive/Máy tính/pexels-photo-719396.jpeg"
 						},
 						{
 							"key": "fullName",
-							"value": "thiên sơn",
+							"value": "thu trinh",
 							"description": "họ và tên",
 							"type": "text"
 						},
@@ -94,125 +94,6 @@
 					"path": [
 						"user",
 						"getInfo"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Image",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{domain}}/user/deleteImageByUser/10",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"user",
-						"deleteImageByUser",
-						"10"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get List Images",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{domain}}/user/getListImages",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"user",
-						"getListImages"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Upload Image",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{accessToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "uploadImage",
-							"description": "image",
-							"type": "file",
-							"src": "/C:/Users/nguye/OneDrive/Máy tính/6a9da94de32fa8f07a0e398256408ec4.jpg"
-						},
-						{
-							"key": "name",
-							"value": "image 4",
-							"description": "image 2",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "description 4",
-							"description": "description 2",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{domain}}/user/uploadImage",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"user",
-						"uploadImage"
 					]
 				}
 			},
